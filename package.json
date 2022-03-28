@@ -1,6 +1,7 @@
 {
   "name": "@sc-voice/scv-rb",
   "version": "2.0.0",
+  "public": true,
   "description": "SuttaCentral Voice rest-bundle",
   "main": "index.js",
   "directories": {
