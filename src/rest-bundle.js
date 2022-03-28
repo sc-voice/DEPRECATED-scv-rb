@@ -115,10 +115,6 @@
             next && next('route');
         }
 
-        pushState() {
-            logger.warn("RestBundle.pushState() ignored (no web socket)");
-        }
-
         taskPromise(name, cbPromise) {
             return new Promise((resolve, reject) => {
                 var onError = (err, n, level) => {
@@ -148,19 +144,19 @@
 
         taskBegin(name) {
             this.taskBag.push(name);
-            this.pushState();
         }
 
         taskEnd(name) {
-            if (this.taskBag.length < 1) {
-                throw new Error("taskEnd() expected:" + name + " actual:(no pending tasks)");
-            }
-            var iName = this.taskBag.indexOf(name);
-            if (iName < 0) {
-                throw new Error("taskEnd() could not locate pending task:" + name);
-            }
-            this.taskBag.splice(iName, 1);
-            this.pushState();
+          if (this.taskBag.length < 1) {
+            throw new Error(
+              "taskEnd() expected:" + name + " actual:(no pending tasks)");
+          }
+          var iName = this.taskBag.indexOf(name);
+          if (iName < 0) {
+            throw new Error(
+              "taskEnd() could not locate pending task:" + name);
+          }
+          this.taskBag.splice(iName, 1);
         }
 
         getAppStats(req, res, next) {

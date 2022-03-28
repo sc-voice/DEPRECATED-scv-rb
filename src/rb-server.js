@@ -32,13 +32,6 @@
             // deprecated
         }
 
-        get handlers() {
-            return super.handlers.concat([
-                this.resourceMethod("get", "web-socket", this.getWebSocket),
-                this.resourceMethod("put", "web-socket", this.putWebSocket),
-            ]);
-        }
-
         close() {
             if (this.rootApp) {
                 if (this.httpServer) {
